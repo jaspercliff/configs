@@ -7,6 +7,7 @@
 ```bash
 # 终端翻译
 sudo pacman -S translate-shell 
+sudo pacman -S nvim
 ```
 
 ## symbol link
