@@ -13,4 +13,5 @@ sudo pacman -S translate-shell
 
 ```bash
 ln -s ~/code/configs/.zshrc ~/.zshrc
+ln -S ~/code/configs/nvim ~/.configs/nvim
 ```
