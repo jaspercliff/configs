@@ -106,6 +106,7 @@ eval "$(starship init zsh)"
 
 # Created by `pipx` on 2026-01-11 11:47:41
 export PATH="$PATH:/home/jasper/.local/bin"
+# 设置npm全局 只需普通用户权限即可安装npm -g            npm config set prefix '~/.npm-global'
 export PATH=$HOME/.npm-global/bin:$PATH
 # translate-shell 
 alias fy='trans -e bing -b :zh-CN'
