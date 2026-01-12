@@ -110,6 +110,7 @@ export PATH="$PATH:/home/jasper/.local/bin"
 export PATH=$HOME/.npm-global/bin:$PATH
 # translate-shell 
 alias fy='trans -e bing -b :zh-CN'
+alias fye='trans -e bing -b :en'
 # 定义一个叫 cnhelp 的功能 --help的显示结果为中文，这里这样写而不是全局设置系统的语言为中文
 chelp() {
     LANG=zh_CN.UTF-8 "$@" --help
