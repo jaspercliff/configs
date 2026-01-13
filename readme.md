@@ -2,6 +2,7 @@
 
 - .zshrc  zsh的配置 一些环境变量
 - environment  /etc/environment 全局环境变量
+- nvim nvim config
 
 ## Prerequisite
 
