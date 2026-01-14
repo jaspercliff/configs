@@ -120,3 +120,6 @@ chelp() {
 export _JAVA_AWT_WM_NONREPARENTING=1
 # 将zsh切换为vim 模式  jk也能切换上一个下一个命令
 bindkey -v
+# keychain  保存密钥密码
+eval $(keychain --eval --agents ssh id_rsa)
+
