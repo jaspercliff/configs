@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -121,5 +121,19 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # 将zsh切换为vim 模式  jk也能切换上一个下一个命令
 bindkey -v
 # keychain  保存密钥密码
-eval $(keychain --eval --agents ssh id_rsa)
+eval $(keychain --eval id_rsa)
+#
+# 定义普通的 Zsh 函数
+my_wayland_paste() {
+  # 把 wl-paste 的内容追加到光标后
+  LBUFFER+="$(wl-paste)"
+}
 
+# 2. 将其注册为 Zle Widget
+zle -N my_wayland_paste
+
+# 3. 在 zsh-vi-mode 加载完成后进行绑定
+function zvm_after_lazy_keybindings() {
+  # vicmd 表示 Vim 的 Normal 模式
+  zvm_bindkey vicmd 'p' my_wayland_paste
+}
