@@ -106,7 +106,7 @@ eval "$(starship init zsh)"
 
 # Created by `pipx` on 2026-01-11 11:47:41
 export PATH="$PATH:/home/jasper/.local/bin"
-# 设置npm全局 只需普通用户权限即可安装npm -g            npm config set prefix '~/.npm-global'
+# 设置npm全局 只需普通用户权限即可安装npm -g                     npm config set prefix '~/.npm-global'
 export PATH=$HOME/.npm-global/bin:$PATH
 # translate-shell 
 alias fy='trans -e bing -b :zh-CN'
@@ -121,19 +121,26 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # 将zsh切换为vim 模式  jk也能切换上一个下一个命令
 bindkey -v
 # keychain  保存密钥密码
-eval $(keychain --eval id_rsa)
+# 兼容处理：在 Mac 上如果不习惯用 keychain 可以注释掉，Arch 上保持 quiet 模式方便截图
+if command -v keychain >/dev/null 2>&1; then
+    eval $(keychain --eval --quiet id_rsa)
+fi
 #
 # 定义普通的 Zsh 函数
-my_wayland_paste() {
-  # 把 wl-paste 的内容追加到光标后
-  LBUFFER+="$(wl-paste)"
+my_smart_paste() {
+  # 跨平台判断：Wayland 用 wl-paste, macOS 用 pbpaste
+  if command -v wl-paste >/dev/null 2>&1; then
+      LBUFFER+="$(wl-paste)"
+  elif command -v pbpaste >/dev/null 2>&1; then
+      LBUFFER+="$(pbpaste)"
+  fi
 }
 
 # 2. 将其注册为 Zle Widget
-zle -N my_wayland_paste
+zle -N my_smart_paste
 
 # 3. 在 zsh-vi-mode 加载完成后进行绑定
 function zvm_after_lazy_keybindings() {
   # vicmd 表示 Vim 的 Normal 模式
-  zvm_bindkey vicmd 'p' my_wayland_paste
+  zvm_bindkey vicmd 'p' my_smart_paste
 }
