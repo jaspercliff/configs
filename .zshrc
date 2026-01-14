@@ -118,3 +118,5 @@ chelp() {
 # Reparenting (传统方式)：窗口管理器会给应用程序窗口包上一层“外壳”（装饰、边框）。Java 默认认为会有这个外壳。
 # Non-reparenting (现代/平铺方式)：niri 窗口管理器直接管理窗口，不加外壳。Java 找不到预期的父窗口，就会导致绘图引擎（AWT）计算坐标出错，结果就是白屏
 export _JAVA_AWT_WM_NONREPARENTING=1
+# vim 模式
+bindkey -v
