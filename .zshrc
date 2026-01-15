@@ -125,22 +125,3 @@ bindkey -v
 if command -v keychain >/dev/null 2>&1; then
     eval $(keychain --eval --quiet id_rsa)
 fi
-#
-# 定义普通的 Zsh 函数
-my_smart_paste() {
-  # 跨平台判断：Wayland 用 wl-paste, macOS 用 pbpaste
-  if command -v wl-paste >/dev/null 2>&1; then
-      LBUFFER+="$(wl-paste)"
-  elif command -v pbpaste >/dev/null 2>&1; then
-      LBUFFER+="$(pbpaste)"
-  fi
-}
-
-# 2. 将其注册为 Zle Widget
-zle -N my_smart_paste
-
-# 3. 在 zsh-vi-mode 加载完成后进行绑定
-function zvm_after_lazy_keybindings() {
-  # vicmd 表示 Vim 的 Normal 模式
-  zvm_bindkey vicmd 'p' my_smart_paste
-}
