@@ -432,7 +432,9 @@ binds {
     // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
 
     Mod+Home { focus-column-first; }
+    Mod+0{ focus-column-first; }
     Mod+End  { focus-column-last; }
+    Mod+Shift+4{ focus-column-last; }
     Mod+Ctrl+Home { move-column-to-first; }
     Mod+Ctrl+End  { move-column-to-last; }
 

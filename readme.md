@@ -38,3 +38,8 @@ sudo ln -s ~/code/configs/environment ./environment
 
 - leader+m+w markmap 实时预览
 - leader+m+e markmap export
+
+### niri
+
+- mod+0 foucs column first
+- mod+shift+4 focus column last
