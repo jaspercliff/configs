@@ -1,0 +1,71 @@
+
+-- local s = ls.snippet
+-- local t = ls.text_node
+-- local i = ls.insert_node
+-- local sn = ls.snippet_node
+-- local d = ls.dynamic_node
+-- local c = ls.choice_node
+--
+-- -- 辅助函数：生成一行数据（去掉了无用的 start_index）
+-- local function make_row_nodes(cols)
+--   local nodes = {}
+--   table.insert(nodes, t("| "))
+--   for j = 1, cols do
+--     table.insert(nodes, i(j, "data"))
+--     if j < cols then
+--       table.insert(nodes, t(" | "))
+--     end
+--   end
+--   table.insert(nodes, t(" |"))
+--   return sn(nil, nodes)
+-- end
+--
+-- -- 递归逻辑：是否增加新行
+-- local function recursive_row(cols)
+--   return function()
+--     return sn(nil, {
+--       c(1, {
+--         t(""), -- 选项 1: 结束
+--         sn(nil, {
+--           t({ "", "" }), -- 换行
+--           make_row_nodes(cols), -- 插入新行
+--           d(1, recursive_row(cols), {}), -- 继续递归
+--         }),
+--       }),
+--     })
+--   end
+-- end
+--
+-- -- 核心函数：构建完整表格
+-- local function make_table_snippet(cols)
+--   local nodes = {}
+--
+--   -- 第一步：生成表头 (Header)
+--   table.insert(nodes, t("| "))
+--   for j = 1, cols do
+--     table.insert(nodes, i(j, "Header"))
+--     if j < cols then
+--       table.insert(nodes, t(" | "))
+--     end
+--   end
+--   table.insert(nodes, t({ " |", "" }))
+--
+--   -- 第二步：生成居中分隔线 (Essential for Markdown!)
+--   table.insert(nodes, t("|"))
+--   for _ = 1, cols do
+--     table.insert(nodes, t(" :---: |"))
+--   end
+--
+--   -- 第三步：生成第一行数据并开启递归
+--   table.insert(nodes, t({ "", "" }))
+--   table.insert(nodes, make_row_nodes(cols))
+--   table.insert(nodes, d(cols + 1, recursive_row(cols), {}))
+--
+--   return nodes
+-- end
+--
+-- ls.add_snippets("markdown", {
+--   s("table3", make_table_snippet(3)),
+--   s("table4", make_table_snippet(4)),
+--   s("table5", make_table_snippet(5)),
+-- })
