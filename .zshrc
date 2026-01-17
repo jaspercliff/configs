@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -106,7 +106,7 @@ eval "$(starship init zsh)"
 
 # Created by `pipx` on 2026-01-11 11:47:41
 export PATH="$PATH:/home/jasper/.local/bin"
-# 设置npm全局 只需普通用户权限即可安装npm -g            npm config set prefix '~/.npm-global'
+# 设置npm全局 只需普通用户权限即可安装npm -g                     npm config set prefix '~/.npm-global'
 export PATH=$HOME/.npm-global/bin:$PATH
 # translate-shell 
 alias fy='trans -e bing -b :zh-CN'
@@ -115,3 +115,13 @@ alias fye='trans -e bing -b :en'
 chelp() {
     LANG=zh_CN.UTF-8 "$@" --help
 }
+# Reparenting (传统方式)：窗口管理器会给应用程序窗口包上一层“外壳”（装饰、边框）。Java 默认认为会有这个外壳。
+# Non-reparenting (现代/平铺方式)：niri 窗口管理器直接管理窗口，不加外壳。Java 找不到预期的父窗口，就会导致绘图引擎（AWT）计算坐标出错，结果就是白屏
+export _JAVA_AWT_WM_NONREPARENTING=1
+# 将zsh切换为vim 模式  jk也能切换上一个下一个命令
+bindkey -v
+# keychain  保存密钥密码
+# 兼容处理：在 Mac 上如果不习惯用 keychain 可以注释掉，Arch 上保持 quiet 模式方便截图
+if command -v keychain >/dev/null 2>&1; then
+    eval $(keychain --eval --quiet id_rsa)
+fi
