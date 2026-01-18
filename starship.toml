@@ -1,0 +1,3 @@
+# 关闭提示符上方的空行
+#add_newline = false
+scan_timeout = 100
