@@ -646,3 +646,5 @@ window-rule {
     geometry-corner-radius 12
 }
 spawn-at-startup "qs" "-c" "noctalia-shell"
+// swww壁纸
+spawn-at-startup "swww-daemon"
