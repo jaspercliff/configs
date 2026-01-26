@@ -125,3 +125,8 @@ bindkey -v
 if command -v keychain >/dev/null 2>&1; then
     eval $(keychain --eval --quiet id_rsa)
 fi
+
+# bun completions
+[ -s "/home/jasper/.bun/_bun" ] && source "/home/jasper/.bun/_bun"
+
+export PATH="/home/jasper/.bun/bin:$PATH"
