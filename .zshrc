@@ -130,3 +130,27 @@ fi
 [ -s "/home/jasper/.bun/_bun" ] && source "/home/jasper/.bun/_bun"
 
 export PATH="/home/jasper/.bun/bin:$PATH"
+
+########################################################## zoxide config 
+eval "$(zoxide init zsh)"
+########################################################## yazi config 
+# 设置默认编辑器为neovim 这样会使用nvim打开文件编辑
+export EDITOR="nvim"
+#  use y instead of yazi to start, 
+# and press q to quit, you'll see the CWD changed. Sometimes, you don't want to change, press Q to quit
+function y() {
+	# 1. 创建一个临时文件，用来记录你最后所在的路径
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+
+	# 2. 运行真正的 yazi 命令，并告诉它：当你关掉时，把最后的路径写到刚才那个临时文件里
+	command yazi "$@" --cwd-file="$tmp"
+
+	# 3. 读取这个临时文件里的路径内容
+	IFS= read -r -d '' cwd < "$tmp"
+
+	# 4. 逻辑判断：如果最后停下的路径和当前路径不一样，且是个合法目录，就执行 cd
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+
+	# 5. 最后把临时文件删掉，保持电脑整洁
+	rm -f -- "$tmp"
+}
