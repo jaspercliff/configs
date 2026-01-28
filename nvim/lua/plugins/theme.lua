@@ -11,4 +11,16 @@ return {
       colorscheme = "catppuccin",
     },
   },
+  -- 核心配置：清除背景颜色 让nvim的背景是终端的配置 而不是自己的
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function()
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+      vim.api.nvim_set_hl(0, "MsgArea", { bg = "none" })
+      vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+      vim.api.nvim_set_hl(0, "PmenuSel", { bg = "none" })
+    end,
+  },
 }
