@@ -154,3 +154,24 @@ function y() {
 	# 5. 最后把临时文件删掉，保持电脑整洁
 	rm -f -- "$tmp"
 }
+
+########################################################## cht.sh config 
+# 涵盖了几乎所有主流编程语言和 Linux 命令。可以把它看作是一个 “命令行版 Stack Overflow + tldr”
+function __cht_search() {
+    # 1. 检查是否输入了参数
+    if [ -z "$1" ]; then
+        echo "用法: ? <命令或编程语言/问题>"
+        echo "示例: ? tar  或者  ? python/regex"
+        return 1
+    fi
+
+    curl -s "https://cht.sh/$1" | bat
+}
+
+alias -- '?'='__cht_search'
+
+function japi() {
+    # 查找本地 JDK 中的类定义
+    # -p: 显示所有方法和成员
+    javap -p "java.util.$1" | bat -l java --plain
+}
