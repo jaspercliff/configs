@@ -104,3 +104,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 ########################################################## zoxide config 
 eval "$(zoxide init zsh)"
+########################################################## lazygit
+alias lg='lazygit'
+eval "$(starship init zsh)"
