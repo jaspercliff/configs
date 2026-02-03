@@ -8,8 +8,7 @@
 
 ```bash
 ln -s ~/code/configs/.zshrc ~/.zshrc
-ln -S ~/code/configs/nvim ~/.configs/nvim
-sudo ln -s ~/code/configs/environment /etc/environment
-ln -s ~/code/configs/starship.toml ~/.configs/starship.toml
+ln -s ~/code/configs/nvim ~/.config/nvim
+ln -s ~/code/configs/starship.toml ~/.config/starship.toml
 ln -s ~/code/configs/kitty  ~/.config/kitty
 ```
