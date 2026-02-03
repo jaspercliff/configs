@@ -70,7 +70,8 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(git)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -101,77 +102,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lg='lazygit'
-eval "$(starship init zsh)"
-
-# Created by `pipx` on 2026-01-11 11:47:41
-export PATH="$PATH:/home/jasper/.local/bin"
-# 设置npm全局 只需普通用户权限即可安装npm -g                     npm config set prefix '~/.npm-global'
-export PATH=$HOME/.npm-global/bin:$PATH
-# translate-shell 
-alias fy='trans -e bing -b :zh-CN'
-alias fye='trans -e bing -b :en'
-# 定义一个叫 cnhelp 的功能 --help的显示结果为中文，这里这样写而不是全局设置系统的语言为中文
-chelp() {
-    LANG=zh_CN.UTF-8 "$@" --help
-}
-# Reparenting (传统方式)：窗口管理器会给应用程序窗口包上一层“外壳”（装饰、边框）。Java 默认认为会有这个外壳。
-# Non-reparenting (现代/平铺方式)：niri 窗口管理器直接管理窗口，不加外壳。Java 找不到预期的父窗口，就会导致绘图引擎（AWT）计算坐标出错，结果就是白屏
-export _JAVA_AWT_WM_NONREPARENTING=1
-# 将zsh切换为vim 模式  jk也能切换上一个下一个命令
-bindkey -v
-# keychain  保存密钥密码
-# 兼容处理：在 Mac 上如果不习惯用 keychain 可以注释掉，Arch 上保持 quiet 模式方便截图
-if command -v keychain >/dev/null 2>&1; then
-    eval $(keychain --eval --quiet id_rsa)
-fi
-
-# bun completions
-[ -s "/home/jasper/.bun/_bun" ] && source "/home/jasper/.bun/_bun"
-
-export PATH="/home/jasper/.bun/bin:$PATH"
-
 ########################################################## zoxide config 
 eval "$(zoxide init zsh)"
-########################################################## yazi config 
-# 设置默认编辑器为neovim 这样会使用nvim打开文件编辑
-export EDITOR="nvim"
-#  use y instead of yazi to start, 
-# and press q to quit, you'll see the CWD changed. Sometimes, you don't want to change, press Q to quit
-function y() {
-	# 1. 创建一个临时文件，用来记录你最后所在的路径
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-
-	# 2. 运行真正的 yazi 命令，并告诉它：当你关掉时，把最后的路径写到刚才那个临时文件里
-	command yazi "$@" --cwd-file="$tmp"
-
-	# 3. 读取这个临时文件里的路径内容
-	IFS= read -r -d '' cwd < "$tmp"
-
-	# 4. 逻辑判断：如果最后停下的路径和当前路径不一样，且是个合法目录，就执行 cd
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-
-	# 5. 最后把临时文件删掉，保持电脑整洁
-	rm -f -- "$tmp"
-}
-
-########################################################## cht.sh config 
-# 涵盖了几乎所有主流编程语言和 Linux 命令。可以把它看作是一个 “命令行版 Stack Overflow + tldr”
-function __cht_search() {
-    # 1. 检查是否输入了参数
-    if [ -z "$1" ]; then
-        echo "用法: ? <命令或编程语言/问题>"
-        echo "示例: ? tar  或者  ? python/regex"
-        return 1
-    fi
-
-    curl -s "https://cht.sh/$1" | bat
-}
-
-alias -- '?'='__cht_search'
-
-function japi() {
-    # 查找本地 JDK 中的类定义
-    # -p: 显示所有方法和成员
-    javap -p "java.util.$1" | bat -l java --plain
-}
