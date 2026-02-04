@@ -3,6 +3,7 @@
 - .zshrc  zsh的配置 一些环境变量 starship
 - environment  /etc/environment 全局环境变量
 - nvim nvim config
+- cheats navi的一些cheat
 
 ## symbol link
 
