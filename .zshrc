@@ -118,8 +118,6 @@ chelp() {
 # Reparenting (传统方式)：窗口管理器会给应用程序窗口包上一层“外壳”（装饰、边框）。Java 默认认为会有这个外壳。
 # Non-reparenting (现代/平铺方式)：niri 窗口管理器直接管理窗口，不加外壳。Java 找不到预期的父窗口，就会导致绘图引擎（AWT）计算坐标出错，结果就是白屏
 export _JAVA_AWT_WM_NONREPARENTING=1
-# 将zsh切换为vim 模式  jk也能切换上一个下一个命令
-bindkey -v
 # keychain  保存密钥密码
 # 兼容处理：在 Mac 上如果不习惯用 keychain 可以注释掉，Arch 上保持 quiet 模式方便截图
 if command -v keychain >/dev/null 2>&1; then
@@ -178,3 +176,19 @@ function japi() {
 
 # 会让 fzf 接管 Ctrl + r，赋予它图形化搜索界面
 source <(fzf --zsh)
+########################################################## navi config 
+# 将本地仓库路径加入 navi 搜索路径
+export NAVI_PATH="$HOME/code/configs/cheats"
+
+# 1. 加载 navi 的基础 widget
+eval "$(navi widget zsh)"
+
+# 2. 通过 zsh-vi-mode 的钩子进行绑定
+# 这样无论是在 Normal 模式还是 Insert 模式，Ctrl+n 都有效
+function zvm_after_init() {
+  zvm_bindkey vicmd '^n' _navi_widget
+  zvm_bindkey viins '^n' _navi_widget
+}
+
+# 3. 这里的 bindkey 也要留着，作为兜底
+bindkey '^n' _navi_widget

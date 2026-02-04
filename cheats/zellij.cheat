@@ -1,25 +1,7 @@
-% zellij, terminal, multiplexer
+% zellij, multiplexer
 
-# 新建窗格 (Pane)
-echo "Alt + n"
+# 打开note session 
+zellij attach note
 
-# 切换窗格焦点
-echo "Alt + i"
-
-# 关闭当前窗格
-echo "Alt + x"
-
-# 切换全屏模式
-echo "Alt + f"
-
-# 进入窗格模式
-echo "Ctrl + p"
-
-# 进入标签页模式
-echo "Ctrl + t"
-
-# 退出 Zellij
-echo "Ctrl + q"
-
-# 分离当前会话 (Detach)
-echo "Alt + d"
+# 查看所有session
+zellij ls
