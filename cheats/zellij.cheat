@@ -1,0 +1,25 @@
+% zellij, terminal, multiplexer
+
+# 新建窗格 (Pane)
+# Alt + n
+
+# 切换窗格焦点
+# Alt + i
+
+# 关闭当前窗格
+# Alt + x
+
+# 切换全屏模式
+# Alt + f
+
+# 进入窗格模式
+# Ctrl + p
+
+# 进入标签页模式
+# Ctrl + t
+
+# 退出 Zellij
+# Ctrl + q
+
+# 分离当前会话 (Detach)
+# Alt + d

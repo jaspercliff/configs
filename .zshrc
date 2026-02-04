@@ -175,3 +175,6 @@ function japi() {
     # -p: 显示所有方法和成员
     javap -p "java.util.$1" | bat -l java --plain
 }
+
+# 会让 fzf 接管 Ctrl + r，赋予它图形化搜索界面
+source <(fzf --zsh)
