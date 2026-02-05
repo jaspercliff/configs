@@ -106,4 +106,24 @@ source $ZSH/oh-my-zsh.sh
 eval "$(zoxide init zsh)"
 ########################################################## lazygit
 alias lg='lazygit'
+
 eval "$(starship init zsh)"
+
+# 会让 fzf 接管 Ctrl + r，赋予它图形化搜索界面
+source <(fzf --zsh)
+########################################################## navi config 
+# 将本地仓库路径加入 navi 搜索路径
+export NAVI_PATH="$HOME/code/configs/cheats"
+
+# 1. 加载 navi 的基础 widget
+eval "$(navi widget zsh)"
+
+# 2. 通过 zsh-vi-mode 的钩子进行绑定
+# 这样无论是在 Normal 模式还是 Insert 模式，Ctrl+n 都有效
+function zvm_after_init() {
+  zvm_bindkey vicmd '^n' _navi_widget
+  zvm_bindkey viins '^n' _navi_widget
+}
+
+# 3. 这里的 bindkey 也要留着，作为兜底
+bindkey '^n' _navi_widget
