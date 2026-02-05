@@ -1,0 +1,11 @@
+% zellij, multiplexer
+
+# 打开note session 
+zellij attach note
+
+# 查看所有session
+zellij ls
+
+# 删除所有session
+zellij delete-all-sessions
+
