@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -133,7 +133,7 @@ export PATH="/home/jasper/.bun/bin:$PATH"
 eval "$(zoxide init zsh)"
 ########################################################## yazi config 
 # 设置默认编辑器为neovim 这样会使用nvim打开文件编辑
-export EDITOR="nvim"
+export EDITOR="helix"
 #  use y instead of yazi to start, 
 # and press q to quit, you'll see the CWD changed. Sometimes, you don't want to change, press Q to quit
 function y() {
@@ -192,3 +192,6 @@ function zvm_after_init() {
 
 # 3. 这里的 bindkey 也要留着，作为兜底
 bindkey '^n' _navi_widget
+
+########################################################## helix config
+alias hx='helix'

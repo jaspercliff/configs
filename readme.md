@@ -4,6 +4,7 @@
 - environment  /etc/environment 全局环境变量
 - nvim nvim config
 - cheats navi的一些cheat
+- helix 配置
 
 ## symbol link
 
@@ -13,4 +14,5 @@ ln -s ~/code/configs/nvim ~/.configs/nvim
 sudo ln -s ~/code/configs/environment /etc/environment
 ln -s ~/code/configs/starship.toml ~/.config/starship.toml
 ln -s ~/code/configs/kitty  ~/.config/kitty
+ln -s ~/code/configs/helix ~/.config/helix
 ```
