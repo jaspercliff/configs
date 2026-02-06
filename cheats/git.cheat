@@ -1,0 +1,7 @@
+% git, version control
+
+# 将指定分支的文件同步到当前分支
+git restore --source <branch> <file>
+
+# 添加远程仓库
+git remote add <name> <url>
