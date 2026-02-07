@@ -128,7 +128,7 @@ function zvm_after_init() {
 # 3. 这里的 bindkey 也要留着，作为兜底
 bindkey '^n' _navi_widget
 
-########################################################## navi config 
+########################################################## zellij config 
 
 # Zellij Aliases
 alias zj='zellij'
