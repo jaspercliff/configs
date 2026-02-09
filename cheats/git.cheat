@@ -5,3 +5,6 @@ git restore --source <branch> <file>
 
 # 添加远程仓库
 git remote add <name> <url>
+
+# 对比文件在不同分支的差异
+git diff <分支A> <分支B> -- <文件路径>
