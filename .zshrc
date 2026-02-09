@@ -80,37 +80,23 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
+# Preferred editor for local and remote sessions ssh session 使用vim local use nvim
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lg='lazygit'
 eval "$(starship init zsh)"
 
 # Created by `pipx` on 2026-01-11 11:47:41
 export PATH="$PATH:/home/jasper/.local/bin"
 # 设置npm全局 只需普通用户权限即可安装npm -g                     npm config set prefix '~/.npm-global'
 export PATH=$HOME/.npm-global/bin:$PATH
-# translate-shell 
-alias fy='trans -e bing -b :zh-CN'
-alias fye='trans -e bing -b :en'
+
 # 定义一个叫 cnhelp 的功能 --help的显示结果为中文，这里这样写而不是全局设置系统的语言为中文
 chelp() {
     LANG=zh_CN.UTF-8 "$@" --help
@@ -132,8 +118,6 @@ export PATH="/home/jasper/.bun/bin:$PATH"
 ########################################################## zoxide config 
 eval "$(zoxide init zsh)"
 ########################################################## yazi config 
-# 设置默认编辑器为neovim 这样会使用nvim打开文件编辑
-export EDITOR="helix"
 #  use y instead of yazi to start, 
 # and press q to quit, you'll see the CWD changed. Sometimes, you don't want to change, press Q to quit
 function y() {
@@ -193,5 +177,9 @@ function zvm_after_init() {
 # 3. 这里的 bindkey 也要留着，作为兜底
 bindkey '^n' _navi_widget
 
-########################################################## helix config
-alias hx='helix'
+####################################################### all alias 
+alias v='nvim'
+alias lg='lazygit'
+# translate-shell 
+alias fy='trans -e bing -b :zh-CN'
+alias fye='trans -e bing -b :en'
