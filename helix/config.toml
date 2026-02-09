@@ -3,9 +3,6 @@ theme = "catppuccin_mocha"
 [editor]
 line-number = "relative"
 mouse = false
-# 失去焦点时自动保存
-save-on-focus-lost = true
-
 # 自动格式化
 auto-format = true
 
