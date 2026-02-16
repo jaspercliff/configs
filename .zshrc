@@ -16,6 +16,8 @@ plugins=(
   zsh-autosuggestions
   # 命令高亮
   zsh-syntax-highlighting
+  # google what is java
+  web-search
 )
 
 source $ZSH/oh-my-zsh.sh
