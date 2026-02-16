@@ -11,13 +11,14 @@ plugins=(
   # 俩个esc 加sudoe
   sudo
   # 使用x 直接解压
-  extract
+  extract 
+  # google/bing what is java
+  web-search
   # 历史补全
   zsh-autosuggestions
   # 命令高亮
   zsh-syntax-highlighting
-  # google what is java
-  web-search
+
 )
 
 source $ZSH/oh-my-zsh.sh
