@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -128,7 +128,16 @@ function zvm_after_init() {
 # 3. 这里的 bindkey 也要留着，作为兜底
 bindkey '^n' _navi_widget
 
-########################################################## zellij config 
+########################################################## alias config 
 
 # Zellij Aliases
 alias zj='zellij'
+alias n='nvim'
+
+
+# bun completions
+[ -s "/Users/jasper/.bun/_bun" ] && source "/Users/jasper/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
