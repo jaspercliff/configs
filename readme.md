@@ -12,3 +12,27 @@ ln -s ~/code/configs/nvim ~/.config/nvim
 ln -s ~/code/configs/starship.toml ~/.config/starship.toml
 ln -s ~/code/configs/kitty  ~/.config/kitty
 ```
+
+
+
+## depend utils
+
+### mac
+
+```zsh 
+```
+```zsh 
+# ripgrep全文搜索  fd快速找文件 fzf模糊搜索
+brew install ripgrep fd fzf
+```
+```
+```
+
+
+### arch
+
+```zsh
+pacman -S ripgrep fd fzf
+```
+```
+```
