@@ -79,6 +79,7 @@ return {
         -- ========================
         -- 跳转 hunk
         -- ========================
+        -- 跳到下一个 hunk（改动块）
         map("n", "]c", function()
           if vim.wo.diff then
             vim.cmd.normal({ "]c", bang = true })
@@ -86,7 +87,7 @@ return {
             gitsigns.nav_hunk("next")
           end
         end, "Next Hunk")
-
+        -- 跳到上一个 hunk
         map("n", "[c", function()
           if vim.wo.diff then
             vim.cmd.normal({ "[c", bang = true })
@@ -98,7 +99,9 @@ return {
         -- ========================
         -- Hunk 操作
         -- ========================
+        -- stage current hunk
         map("n", "<leader>hs", gitsigns.stage_hunk, "Stage Hunk")
+        --  restore  head 撤销current hunk
         map("n", "<leader>hr", gitsigns.reset_hunk, "Reset Hunk")
 
         -- 视觉模式选中 hunk
@@ -110,7 +113,7 @@ return {
           gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end, "Reset Selected Hunk")
 
-        -- 整个 buffer
+        -- 整个 buffer 该操作不能 u  nstage buffer 可以使用lazygit unstage buffer
         map("n", "<leader>hS", gitsigns.stage_buffer, "Stage Buffer")
         map("n", "<leader>hR", gitsigns.reset_buffer, "Reset Buffer")
 
@@ -123,23 +126,27 @@ return {
           gitsigns.blame_line({ full = true })
         end, "Blame Line")
 
-        -- diff
+        -- diff 这次修改了什么
         map("n", "<leader>hd", gitsigns.diffthis, "Diff This")
+        -- 相比上次commit有什么区别
         map("n", "<leader>hD", function()
           gitsigns.diffthis("~")
         end, "Diff Against ~")
 
         -- quickfix
+        -- add all hunks to quickfix
         map("n", "<leader>hQ", function()
           gitsigns.setqflist("all")
         end, "Quickfix All")
-
+        -- add current hunk to quickfix
         map("n", "<leader>hq", gitsigns.setqflist, "Quickfix Current")
 
         -- ========================
         -- Toggle
         -- ========================
+        -- 开关 当前行的 blame 信息
         map("n", "<leader>tb", gitsigns.toggle_current_line_blame, "Toggle Blame")
+        -- 开关 当前行的 blame 信息 word level
         map("n", "<leader>tw", gitsigns.toggle_word_diff, "Toggle Word Diff")
 
         -- ========================
