@@ -39,7 +39,8 @@ return {
       },
 
       auto_attach = true,
-      attach_to_untracked = false,
+      -- untracked file also valid  ：like new file
+      attach_to_untracked = true,
 
       -- ========== 当前行 blame ==========
       current_line_blame = false, -- 默认关闭
