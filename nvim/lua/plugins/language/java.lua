@@ -19,6 +19,9 @@ return {
             configuration = {
               updateBuildConfiguration = "interactive",
             },
+            format = {
+              tabSize = 4, -- 缩进大小为 4
+            },
           },
         },
       },
