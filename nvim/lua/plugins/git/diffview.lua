@@ -9,13 +9,20 @@ return {
   cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewFocusFiles", "DiffviewToggleFiles" },
   -- 绑定到 LazyVim 的快捷键
   keys = {
-    -- 查看该文件有哪些改动
-    { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diffview Open" },
-    -- 一次关闭diffview 不然要退出俩次
-    -- 查看当前文件历史
+    -- 1. 查看当前改动 (直接回车)
+    { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diffview: Open" },
+
+    -- 2. 手动输入分支名 (注意最后那个空格，且没有 <cr>)
+    { "<leader>gv", ":DiffviewOpen ", desc = "Diffview: 输入分支名" },
+
+    -- 3. 查看当前文件历史
     { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File History (Current File)" },
-    -- eq 查看git提交历史    tab 切换下一个文件  gf（go to file 类似idea的f4 跳入文件编辑) tab 切换提交 shift+tab<s-tab> 快速切换
+
+    -- 4. 查看整个项目提交历史
     { "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "File History (Project)" },
+
+    -- 5. 快速退出 Diffview
+    { "<leader>gq", "<cmd>DiffviewClose<cr>", desc = "Diffview: Close" },
   },
   opts = function()
     local actions = require("diffview.actions")
