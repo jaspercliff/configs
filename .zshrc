@@ -47,6 +47,14 @@ bindkey '^n' _navi_widget
 # Zellij Aliases
 alias zj='zellij'
 alias n='nvim'
+# translate-shell
+# 中文 -> 英文 (Chinese to English)
+alias ce='trans -b :en'
+# 英文 -> 中文 (English to Chinese)
+alias ec='trans -b :zh'
+# 详细模式 (带音标、例句和字典解释)
+alias ced='trans :en'
+alias ecd='trans :zh'
 
 
 ########################################################## bun config 

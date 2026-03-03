@@ -20,19 +20,15 @@ ln -s ~/code/configs/kitty  ~/.config/kitty
 ### mac
 
 ```zsh 
-```
-```zsh 
 # ripgrep全文搜索  fd快速找文件 fzf模糊搜索
-brew install ripgrep fd fzf
-```
-```
+brew install ripgrep fd fzf translate-shell
 ```
 
 
 ### arch
 
 ```zsh
-pacman -S ripgrep fd fzf
+pacman -S ripgrep fd fzf translate-shell
+
 ```
-```
-```
+
