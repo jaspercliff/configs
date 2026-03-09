@@ -86,6 +86,8 @@ function japi() {
 alias zj='zellij'
 alias n='nvim'
 alias lg='lazygit'
+alias ld='lazydocker'
+alias cls='clear'
 
 # translate-shell
 # 中文 -> 英文 (Chinese to English)
