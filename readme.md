@@ -14,5 +14,5 @@ ln -s ~/code/configs/nvim ~/.configs/nvim
 sudo ln -s ~/code/configs/environment /etc/environment
 ln -s ~/code/configs/starship.toml ~/.config/starship.toml
 ln -s ~/code/configs/kitty  ~/.config/kitty
-ln -s ~/code/configs/helix ~/.config/helix
+ln -s ~/code/configs/lazydocker ~/.config/lazydocker
 ```
