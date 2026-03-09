@@ -1,0 +1,16 @@
+% docker, container
+
+# 查看所有正在运行的容器
+docker ps 
+
+# docker-compose 启动
+docker-compose up -d
+
+# docker-compose 停止
+docker-compose down 
+
+# compose 查看日志
+docker-compose logs
+
+# 以普通用户修改没有权限的文件
+docker unshare
