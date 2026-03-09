@@ -1,0 +1,13 @@
+% valkey, cache
+
+# 查看cluster的nodes
+valkey-cli -p 6380 cluster nodes
+
+# valkey add new node  new node known node 
+valkey-cli --cluster add-node 192.168.31.36:6386 192.168.31.36:6380
+
+# valkey 没有slot reshard 手动分配
+valkey-cli --cluster reshard 192.168.31.36:6386
+
+# valkey delete node  随机一个已知节点 要删除的节点id
+valkey-cli -p 6380 --cluster del-node 192.168.31.36:6380 id
