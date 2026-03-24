@@ -98,6 +98,9 @@ alias ec='trans -b :zh'
 alias ced='trans :en'
 alias ecd='trans :zh'
 
+# arthas 
+alias as="java -jar /opt/arthas-boot.jar"
+
 ########################################################## bun config 
 # bun completions
 [ -s "/home/jasper/.bun/_bun" ] && source "/home/jasper/.bun/_bun"
@@ -119,3 +122,5 @@ if command -v keychain >/dev/null 2>&1; then
     eval $(keychain --eval --quiet id_rsa)
 fi
 
+
+export REDISCLI_AUTH=passwd

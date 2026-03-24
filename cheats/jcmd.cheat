@@ -1,0 +1,8 @@
+% java,jcmd 
+
+
+# 查看java thread 堆栈信息
+jcmd <pid> Thread.print > test.txt
+
+# 查看java native memory 使用情况  -XX:NativeMemoryTracking=detail
+jcmd <pid> VM.native_memory summary
