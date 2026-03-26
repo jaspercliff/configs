@@ -1,0 +1,10 @@
+customCommands:
+  containers:
+    - name: "Valkey: Create Cluster"
+      # 使用单行书写，避免 YAML 换行符解析歧义
+      command: "docker exec valkey-1 valkey-cli -a passwd --cluster create 192.168.31.36:6380 192.168.31.36:6381 192.168.31.36:6382 192.168.31.36:6383 192.168.31.36:6384 192.168.31.36:6385 --cluster-replicas 1 --cluster-yes"
+      description: "初始化 Valkey 集群"
+      attach: true
+
+# --cluster-yes 自动接受 不用手动输入yes
+# attach: true 交互式
