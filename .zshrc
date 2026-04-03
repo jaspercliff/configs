@@ -91,12 +91,14 @@ alias cls='clear'
 
 # translate-shell
 # 中文 -> 英文 (Chinese to English)
-alias ce='trans -b :en'
+alias ce='trans -proxy http://127.0.0.1:7897 -b zh:en'
 # 英文 -> 中文 (English to Chinese)
-alias ec='trans -b :zh'
+alias ec='trans -proxy http://127.0.0.1:7897 -b en:zh'
 # 详细模式 (带音标、例句和字典解释)
-alias ced='trans :en'
-alias ecd='trans :zh'
+alias ced='trans -proxy http://127.0.0.1:7897 zh:en'
+alias ecd='trans -proxy http://127.0.0.1:7897 en:zh'
+
+alias p='proxychains4 -q' # 想让什么命令走代理，直接 p
 
 # arthas 
 alias as="java -jar /opt/arthas-boot.jar"
