@@ -103,6 +103,8 @@ alias p='proxychains4 -q' # 想让什么命令走代理，直接 p
 # arthas 
 alias as="java -jar /opt/arthas-boot.jar"
 
+alias fake="fake -q --locale zh_CN"
+
 ########################################################## bun config 
 # bun completions
 [ -s "/home/jasper/.bun/_bun" ] && source "/home/jasper/.bun/_bun"
@@ -126,3 +128,11 @@ fi
 
 
 export REDISCLI_AUTH=passwd
+
+#compdef just
+source <(JUST_COMPLETE=zsh just)
+if [ "$funcstack[1]" = "_just" ]; then
+  _clap_dynamic_completer_just "$@"
+fi
+
+eval "$(direnv hook zsh)"
