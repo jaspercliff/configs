@@ -105,6 +105,16 @@ alias as="java -jar /opt/arthas-boot.jar"
 
 alias fake="fake -q --locale zh_CN"
 
+
+alias ls='eza --icons'
+lt() {
+    local level="${1:-1}" # 如果没有传参数，就用(-1)默认值: 1
+    shift #会把 所有参数向左移动一位，即 $2 变成 $1，$3 变成 $2，原来的 $1 被丢掉
+    eza --tree --icons --level "$level" "$@"
+}
+alias ll='eza -l --icons --git'
+alias la='eza -la --icons --git'
+
 ########################################################## bun config 
 # bun completions
 [ -s "/home/jasper/.bun/_bun" ] && source "/home/jasper/.bun/_bun"
@@ -136,3 +146,5 @@ if [ "$funcstack[1]" = "_just" ]; then
 fi
 
 eval "$(direnv hook zsh)"
+
+source ~/code/configs/atuin/init.zsh
