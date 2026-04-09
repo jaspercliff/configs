@@ -60,8 +60,8 @@ bindkey '^n' _navi_widget
 
 # Zellij Aliases
 alias zj='zellij'
-alias n='nvim'
 alias lg='lazygit'
+
 alias ld='lazydocker'
 alias cls='clear'
 
@@ -91,6 +91,13 @@ lt() {
 alias ll='eza -l --icons --git'
 alias la='eza -la --icons --git'
 
+n() {
+  if [ -z "$1" ]; then
+    nvim .
+  else
+    nvim "$1"
+  fi
+}
 ########################################################## bun config
 # bun completions
 [ -s "/Users/jasper/.bun/_bun" ] && source "/Users/jasper/.bun/_bun"
