@@ -10,7 +10,7 @@ config.color_scheme = "AdventureTime"
 
 config.color_scheme = "Catppuccin Mocha"
 
-config.window_background_opacity = 0.85 -- 透明度
+config.window_background_opacity = 0.95 -- 透明度
 config.macos_window_background_blur = 30 -- Mac 毛玻璃
 
 -- config.window_decorations = "RESIZE"
