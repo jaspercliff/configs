@@ -6,12 +6,19 @@ local config = wezterm.config_builder()
 
 -- or, changing the font size and color scheme.
 config.font_size = 16
-config.color_scheme = "AdventureTime"
-
 config.color_scheme = "Catppuccin Mocha"
 
-config.window_background_opacity = 0.95 -- 透明度
-config.macos_window_background_blur = 30 -- Mac 毛玻璃
+config.background = {
+	{
+		source = {
+			File = wezterm.home_dir .. "/code/configs/assets/chutian.jpg",
+		},
+		opacity = 1, -- 图片不透明度 0~1
+		hsb = {
+			brightness = 0.05, -- 亮度
+		},
+	},
+}
 
 -- config.window_decorations = "RESIZE"
 
