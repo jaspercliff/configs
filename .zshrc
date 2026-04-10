@@ -148,3 +148,4 @@ fi
 eval "$(direnv hook zsh)"
 
 source ~/code/configs/atuin/init.zsh
+export PATH=$HOME/bin:$PATH
