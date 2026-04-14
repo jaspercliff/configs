@@ -1,23 +1,9 @@
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="ys"
-#######################################################  oh-my-zsh plugins
-plugins=(
-  git
-  # advanced cd 
-  z
-  # 俩个esc 加sudoe
-  sudo
-  # 使用x 直接解压
-  extract 
-  # google/bing what is java
-  web-search
-  # 历史补全
-  zsh-autosuggestions
-  # 命令高亮
-  zsh-syntax-highlighting
+# 1. completion（必须先）
+autoload -Uz compinit
+compinit
+eval "$(sheldon source)"
+eval "$(zoxide init zsh)"
 
-)
-source $ZSH/oh-my-zsh.sh
 export EDITOR=nvim
 export VISUAL=nvim
 ########################################################## starship

@@ -1,10 +1,5 @@
 # configs
 
-- .zshrc  zsh的配置 一些环境变量 starship
-- environment  /etc/environment 全局环境变量
-- nvim nvim config
-- cheats navi的一些cheat
-- helix 配置
 
 ## symbol link
 
@@ -16,4 +11,5 @@ ln -s ~/code/configs/starship.toml ~/.config/starship.toml
 ln -s ~/code/configs/kitty  ~/.config/kitty
 ln -s ~/code/configs/lazydocker ~/.config/lazydocker
 ln -s ~/code/configs/wezterm ~/.config/wezterm
+ln -s ~/code/configs/sheldon ~/.config/sheldon
 ```
