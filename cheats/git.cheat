@@ -8,3 +8,6 @@ git remote add <name> <url>
 
 # 对比文件在不同分支的差异
 git diff <分支A> <分支B> -- <文件路径>
+
+# 从tag新建分支
+git switch -c <newBranch> <tag>
