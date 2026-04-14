@@ -1,0 +1,47 @@
+% brew,mac install 
+
+# 查看软件详细信息
+brew info <name>
+
+# 查看所有安装内容(包括命令行工具和 GUI 软件)
+brew list
+
+# 所有软件当前的版本
+brew list --versions
+
+# 只查看命令行工具
+brew list --formula
+
+# 只查看 GUI 软件
+brew list --cask
+
+# 过滤掉那些因为“依赖关系”被自动安装的零碎插件，只显示你手动执行过 brew install 的主程序
+brew leaves
+
+
+# 安装命令行工具
+brew install <软件名>
+
+# 安装图形化软件
+brew install --cask <软件名>
+
+# 仅删除该软件，保留依赖
+brew uninstall <name>
+
+# 强制卸载（包括所有版本） 但是依然不会删除依赖 
+brew uninstall --force <name>
+
+# 一键清理所有不再需要的“孤儿”依赖
+brew autoremove
+
+# 删除旧版本的安装包缓存，释放磁盘空间
+brew cleanup
+
+# 以树状图形式查看某个软件到底依赖了谁
+brew deps --tree <name>
+
+
+# 查看哪些软件可以更新了
+brew outdated
+# 更新所有软件  Homebrew 本身以及它本地的“账本” 升级 清理
+brew update && brew upgrade && brew cleanup
