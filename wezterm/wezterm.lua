@@ -11,11 +11,11 @@ config.enable_tab_bar = false
 config.background = {
 	{
 		source = {
-			File = wezterm.home_dir .. "/code/configs/assets/chutian.jpg",
+			File = wezterm.home_dir .. "/code/configs/assets/2.jpg",
 		},
 		opacity = 1, -- 图片不透明度 0~1
 		hsb = {
-			brightness = 0.4, -- 亮度
+			brightness = 0.1, -- 亮度
 		},
 	},
 }
