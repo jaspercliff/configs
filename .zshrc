@@ -85,6 +85,8 @@ n() {
     nvim "$1"
   fi
 }
+
+alias leet='nvim leetcode.nvim'
 ########################################################## bun config
 # bun completions
 [ -s "/Users/jasper/.bun/_bun" ] && source "/Users/jasper/.bun/_bun"
