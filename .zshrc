@@ -101,3 +101,5 @@ eval "$(atuin init zsh)"
 source ~/code/configs/atuin/init.zsh
 
 
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
