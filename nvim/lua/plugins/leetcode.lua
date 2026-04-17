@@ -9,8 +9,11 @@ return {
 
   opts = {
     cn = {
-      enabled = true, -- ⭐必须打开
+      enabled = true, -- leetcode.cn
     },
     lang = "java",
+    storage = {
+      home = vim.fn.expand("~/code/datastructure/leetcode/src/main/java/"),
+    },
   },
 }

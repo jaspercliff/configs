@@ -18,3 +18,6 @@ end
 
 -- 绑定快捷键，例如 <leader>r (Run)
 vim.keymap.set("n", "<leader>rj", run_java_jdk21, { desc = "Java 21 Single File Run" })
+
+vim.o.guifont = "Menlo:h17"
+vim.opt.linespace = 5
