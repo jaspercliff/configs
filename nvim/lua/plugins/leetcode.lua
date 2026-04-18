@@ -13,7 +13,7 @@ return {
     },
     lang = "java",
     storage = {
-      home = vim.fn.expand("~/code/datastructure/leetcode/src/main/java/"),
+      home = vim.fn.expand("~/code/learnDS/javaImpl/leetcode"),
     },
   },
 }
