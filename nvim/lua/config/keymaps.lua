@@ -32,3 +32,7 @@ end)
 vim.keymap.set("n", "<F12>", function()
   require("dap").step_out()
 end)
+
+-- ==================================== java-helper
+
+vim.keymap.set("n", "<leader>jc", "<cmd>JavaCreateClass<CR>")

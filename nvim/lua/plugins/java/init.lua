@@ -4,4 +4,5 @@ return {
   require("plugins.java.nvim-dap-view"),
   require("plugins.java.nvim-dap"),
   require("plugins.java.nvim-lspconfig"),
+  require("plugins.java.java-helper"),
 }
