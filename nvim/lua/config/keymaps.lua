@@ -36,3 +36,7 @@ end)
 -- ==================================== java-helper
 
 vim.keymap.set("n", "<leader>jc", "<cmd>JavaCreateClass<CR>")
+
+-- ====================================== aerial 查看代码结构 structure
+--
+vim.keymap.set("n", "<leader>7", "<cmd>AerialToggle! left<CR>")

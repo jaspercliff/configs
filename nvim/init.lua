@@ -3,3 +3,8 @@ require("config.lazy")
 
 vim.o.guifont = "Menlo:h17"
 vim.opt.linespace = 5
+
+vim.o.exrc = true
+vim.o.secure = true
+
+vim.o.background = "dark"
