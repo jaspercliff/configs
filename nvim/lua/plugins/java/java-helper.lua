@@ -1,12 +1,14 @@
 return {
   {
     -- "jaspercliff/java-helper.nvim",
-
-    -- 本地调试：用本地路径
     dir = vim.fn.expand("~/code/lua/java-helper.nvim"),
-
     config = function()
-      require("java-helper").setup()
+      require("java-helper").setup({
+        create_class_command = "JavaCreateClass",
+        author = "jasper",
+        -- since_format = "%Y-%m-%d %H:%M:%S",
+        since_format = "%Y-%m-%d",
+      })
     end,
   },
 }
