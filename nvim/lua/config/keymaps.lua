@@ -6,7 +6,7 @@ vim.keymap.set("n", "<leader>rj", function()
 end, { desc = "Java 21 Single File Run" })
 
 vim.keymap.set("n", "<leader>rl", function()
-  require("config.run").run_lua()()
+  require("config.run").run_lua()
 end, { desc = "run lua file" })
 -- =============================================dap
 vim.keymap.set("n", "<F5>", function()
@@ -37,6 +37,12 @@ end)
 
 vim.keymap.set("n", "<leader>jc", "<cmd>JavaCreateClass<CR>")
 
+-- =======================================jdtls
+vim.keymap.set("n", "<leader>jb", "<cmd>JdtBytecode<CR>", { desc = "Java: Show bytecode simple" })
+
+vim.keymap.set("n", "<leader>jv", function()
+  require("config.run").javap_verbose()
+end, { desc = "Java: Show javap verbose" })
+
 -- ====================================== aerial 查看代码结构 structure
---
 vim.keymap.set("n", "<leader>7", "<cmd>AerialToggle! left<CR>")
