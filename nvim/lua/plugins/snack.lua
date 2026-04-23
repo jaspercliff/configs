@@ -28,6 +28,7 @@ return {
         since_format = "%Y-%m-%d %H:%M:%S",
       }, {
         key = "J", -- explorer 列表里按 N 创建
+        init_key = "M",
       })
 
       opts.picker.sources.explorer = vim.tbl_deep_extend("force", opts.picker.sources.explorer, patch)

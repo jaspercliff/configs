@@ -8,6 +8,7 @@ return {
         author = "jasper",
         -- since_format = "%Y-%m-%d %H:%M:%S",
         since_format = "%Y-%m-%d",
+        sub_package = "com.jasper",
       })
     end,
   },
