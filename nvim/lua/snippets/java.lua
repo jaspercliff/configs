@@ -117,4 +117,14 @@ ls.add_snippets("java", {
     i(1),
     t({ "", "}" }),
   }),
+  s({
+    trig = "([%w%._%(%)]+)%.ret",
+    regTrig = true,
+  }, {
+    t("return "),
+    f(function(_, snip)
+      return snip.captures[1]
+    end),
+    t(";"),
+  }),
 })
