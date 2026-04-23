@@ -33,10 +33,6 @@ vim.keymap.set("n", "<F12>", function()
   require("dap").step_out()
 end)
 
--- ==================================== java-helper
-
-vim.keymap.set("n", "<leader>jc", "<cmd>JavaCreateClass<CR>")
-
 -- =======================================jdtls
 vim.keymap.set("n", "<leader>jb", "<cmd>JdtBytecode<CR>", { desc = "Java: Show bytecode simple" })
 

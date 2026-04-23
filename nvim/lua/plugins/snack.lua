@@ -1,23 +1,36 @@
 return {
   {
     "folke/snacks.nvim",
-    opts = {
-      dashboard = {
-        sections = {
-          {
-            section = "terminal",
-            -- 每次打开都会显示：2024-03-21 14:30:05
-            cmd = "echo \"Hello! Today is $(date '+%A, %B %d')\nTime: $(date '+%H:%M')\" | cowsay -r",
-            height = 12,
-            padding = 1,
-            indent = 2,
-            -- 关键配置：将缓存时间设为 0，强制每次打开都重新运行命令
-            ttl = 0,
-          },
-          { section = "keys", gap = 1, padding = 1 },
-          { section = "startup" },
+    opts = function(_, opts)
+      -- 先保留你原来的 dashboard 配置
+      opts.dashboard = opts.dashboard or {}
+      opts.dashboard.sections = {
+        {
+          section = "terminal",
+          cmd = "echo \"Hello! Today is $(date '+%A, %B %d')\nTime: $(date '+%H:%M')\" | cowsay -r",
+          height = 12,
+          padding = 1,
+          indent = 2,
+          ttl = 0,
         },
-      },
-    },
+        { section = "keys", gap = 1, padding = 1 },
+        { section = "startup" },
+      }
+
+      -- explorer 里的 java-helper 快捷键
+      opts.picker = opts.picker or {}
+      opts.picker.sources = opts.picker.sources or {}
+      opts.picker.sources.explorer = opts.picker.sources.explorer or {}
+
+      local patch = require("java-helper.integrations.snacks_explorer").patch({
+        -- 可选：java-helper 的配置
+        author = "jasper",
+        since_format = "%Y-%m-%d %H:%M:%S",
+      }, {
+        key = "J", -- explorer 列表里按 N 创建
+      })
+
+      opts.picker.sources.explorer = vim.tbl_deep_extend("force", opts.picker.sources.explorer, patch)
+    end,
   },
 }
