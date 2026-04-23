@@ -20,23 +20,6 @@ ls.add_snippets("java", {
 })
 
 ls.add_snippets("java", {
-  s({
-    trig = "(%S+)%.soutv",
-    regTrig = true,
-  }, {
-    t('System.out.println("'),
-    f(function(_, snip)
-      return snip.captures[1]
-    end),
-    t(' = " + '),
-    f(function(_, snip)
-      return snip.captures[1]
-    end),
-    t(");"),
-  }),
-})
-
-ls.add_snippets("java", {
   -- a.n  -> if (a == null)
   s({
     trig = "([%w%._%(%)]+)%.n",
@@ -126,5 +109,40 @@ ls.add_snippets("java", {
       return snip.captures[1]
     end),
     t(";"),
+  }),
+})
+
+-- 从上一行提取变量名
+
+local function get_prev_var()
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  if row <= 1 then
+    return "var"
+  end
+  local line = vim.api.nvim_buf_get_lines(0, row - 2, row - 1, false)[1]
+  if not line then
+    return "var"
+  end
+  -- 匹配：String name = ...
+  local var = line:match("(%w+)%s*=")
+  if var then
+    return var
+  end
+  return "var"
+end
+
+ls.add_snippets("java", {
+  s({
+    trig = "soutv",
+  }, {
+    t('System.out.println("'),
+    f(function()
+      return get_prev_var()
+    end),
+    t(' = " + '),
+    f(function()
+      return get_prev_var()
+    end),
+    t(");"),
   }),
 })
