@@ -15,7 +15,7 @@ end)
 vim.keymap.set("n", "<F6>", function()
   require("dap").terminate()
 end)
-vim.keymap.set("n", "<F7>", "<cmd>DapViewOpen<CR>")
+vim.keymap.set("n", "<leader>5", "<cmd>DapViewToggle<CR>")
 
 vim.keymap.set("n", "<F9>", function()
   require("dap").toggle_breakpoint()
