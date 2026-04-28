@@ -12,4 +12,5 @@ ln -s ~/code/configs/kitty  ~/.config/kitty
 ln -s ~/code/configs/lazydocker ~/.config/lazydocker
 ln -s ~/code/configs/wezterm ~/.config/wezterm
 ln -s ~/code/configs/sheldon ~/.config/sheldon
+ln -s ~/code/configs/.agents ~/.agents
 ```
