@@ -100,6 +100,19 @@ ls.add_snippets("java", {
     i(1),
     t({ "", "}" }),
   }),
+  -- 倒序 for
+  s({
+    trig = "([%w%._%(%)]+)%.forr",
+    regTrig = true,
+  }, {
+    t("for (int i = "),
+    f(function(_, snip)
+      return snip.captures[1] .. " - 1"
+    end),
+    t({ "; i >= 0; i--) {", "\t" }),
+    i(1),
+    t({ "", "}" }),
+  }),
   s({
     trig = "([%w%._%(%)]+)%.ret",
     regTrig = true,
