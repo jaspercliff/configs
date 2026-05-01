@@ -10,9 +10,9 @@ return {
       signs = {
         add = { text = "┃" }, -- 新增行
         change = { text = "┃" }, -- 修改行
-        delete = { text = "_" }, -- 删除行
+        delete = { text = "┃" }, -- 删除行
+        changedelete = { text = "┃" }, -- 修改+删除
         topdelete = { text = "‾" }, -- 文件顶部删除
-        changedelete = { text = "~" }, -- 修改+删除
         untracked = { text = "┆" }, -- 未追踪文件
       },
 
@@ -65,10 +65,15 @@ return {
         row = 0,
         col = 1,
       },
-
-      -- ========== 关键：LazyVim 推荐的 on_attach 写法 ==========
+      -- ========== 关键：LazyVim 推荐的 on_attach 写法 ===========
       on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
+
+        -- 手动设置高亮颜色
+        vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#77ff77", bold = true })
+        vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#5173C1" })
+        vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#ff5555" })
+        vim.api.nvim_set_hl(0, "GitSignsChangeDelete", { fg = "#7E82B3" })
 
         local function map(mode, lhs, rhs, desc)
           vim.keymap.set(mode, lhs, rhs, {
