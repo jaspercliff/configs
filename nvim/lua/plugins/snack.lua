@@ -44,5 +44,7 @@ return {
       end,
       desc = "Git Diff (Upstream)",
     },
+    -- 禁用默认的 Git Diff (hunks) 映射 使用diffview的
+    { "<leader>gd", false },
   },
 }
