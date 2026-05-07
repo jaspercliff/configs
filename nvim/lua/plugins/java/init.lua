@@ -5,4 +5,5 @@ return {
   require("plugins.java.nvim-dap"),
   require("plugins.java.nvim-lspconfig"),
   require("plugins.java.java-helper"),
+  require("plugins.java.neotest"),
 }
