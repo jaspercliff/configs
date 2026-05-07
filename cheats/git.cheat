@@ -1,0 +1,13 @@
+% git, version control
+
+# 将指定分支的文件同步到当前分支
+git restore --source <branch> <file>
+
+# 添加远程仓库
+git remote add <name> <url>
+
+# 对比文件在不同分支的差异
+git diff <分支A> <分支B> -- <文件路径>
+
+# 从tag新建分支
+git switch -c <newBranch> <tag>
