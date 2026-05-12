@@ -1,30 +1,17 @@
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="ys"
-#######################################################  oh-my-zsh plugins
-plugins=(
-  git
-  # advanced cd 
-  z
-  # 俩个esc 加sudoe
-  sudo
-  # 使用x 直接解压
-  extract 
-  # google/bing what is java
-  web-search
-  # 历史补全
-  zsh-autosuggestions
-  # 命令高亮
-  zsh-syntax-highlighting
+# 1. completion（必须先）
+autoload -Uz compinit
+compinit
+eval "$(sheldon source)"
+eval "$(zoxide init zsh)"
 
-)
-source $ZSH/oh-my-zsh.sh
-
+export EDITOR=nvim
+export VISUAL=nvim
 ########################################################## starship
 eval "$(starship init zsh)"
 
 
-########################################################## yazi config 
-#  use y instead of yazi to start, 
+########################################################## yazi config
+#  use y instead of yazi to start,
 # and press q to quit, you'll see the CWD changed. Sometimes, you don't want to change, press Q to quit
 function y() {
 	# 1. 创建一个临时文件，用来记录你最后所在的路径
@@ -53,41 +40,17 @@ export NAVI_PATH="$HOME/code/configs/cheats"
 # 1. 加载 navi 的基础 widget
 eval "$(navi widget zsh)"
 
-# 3. 这里的 bindkey 也要留着，作为兜底
+# . 这里的 bindkey 也要留着，作为兜底
 bindkey '^n' _navi_widget
-######################################################### cnhelp 
-# 定义一个叫 cnhelp 的功能 --help的显示结果为中文，这里这样写而不是全局设置系统的语言为中文
-chelp() {
-    LANG=zh_CN.UTF-8 "$@" --help
-}
-########################################################## cht.sh config 
-# 涵盖了几乎所有主流编程语言和 Linux 命令。可以把它看作是一个 “命令行版 Stack Overflow + tldr”
-function __cht_search() {
-    # 1. 检查是否输入了参数
-    if [ -z "$1" ]; then
-        echo "用法: ? <命令或编程语言/问题>"
-        echo "示例: ? tar  或者  ? python/regex"
-        return 1
-    fi
 
-    curl -s "https://cht.sh/$1" | bat
-}
+########################################################## alias config 
 
-alias -- '?'='__cht_search'
-
-function japi() {
-    # 查找本地 JDK 中的类定义
-    # -p: 显示所有方法和成员
-    javap -p "java.util.$1" | bat -l java --plain
-}
-
-####################################################### all alias 
 # Zellij Aliases
 alias zj='zellij'
-alias n='nvim'
+
 alias lg='lazygit'
+alias ls='lazyssh'
 alias ld='lazydocker'
-alias cls='clear'
 
 # translate-shell
 # 中文 -> 英文 (Chinese to English)
@@ -100,7 +63,7 @@ alias ecd='trans -proxy http://127.0.0.1:7897 en:zh'
 
 alias p='proxychains4 -q' # 想让什么命令走代理，直接 p
 
-# arthas 
+# arthas
 alias as="java -jar /opt/arthas-boot.jar"
 
 alias fake="fake -q --locale zh_CN"
@@ -115,37 +78,33 @@ lt() {
 alias ll='eza -l --icons --git'
 alias la='eza -la --icons --git'
 
-########################################################## bun config 
+n() {
+  if [ -z "$1" ]; then
+    nvim .
+  else
+    nvim "$1"
+  fi
+}
+
+alias leet='nvim leetcode.nvim'
+########################################################## bun config
 # bun completions
-[ -s "/home/jasper/.bun/_bun" ] && source "/home/jasper/.bun/_bun"
-export PATH="/home/jasper/.bun/bin:$PATH"
+[ -s "/Users/jasper/.bun/_bun" ] && source "/Users/jasper/.bun/_bun"
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
-# 设置npm全局 只需普通用户权限即可安装npm -g                     npm config set prefix '~/.npm-global'
-export PATH=$HOME/.npm-global/bin:$PATH
+# Added by Antigravity
+export PATH="/Users/jasper/.antigravity/antigravity/bin:$PATH"
 
-
-# jmeter problem 
-# Reparenting (传统方式)：窗口管理器会给应用程序窗口包上一层“外壳”（装饰、边框）。Java 默认认为会有这个外壳。
-# Non-reparenting (现代/平铺方式)：niri 窗口管理器直接管理窗口，不加外壳。Java 找不到预期的父窗口，就会导致绘图引擎（AWT）计算坐标出错，结果就是白屏
-export _JAVA_AWT_WM_NONREPARENTING=1
-
-# keychain  保存密钥密码
-# 兼容处理：在 Mac 上如果不习惯用 keychain 可以注释掉，Arch 上保持 quiet 模式方便截图
-if command -v keychain >/dev/null 2>&1; then
-    eval $(keychain --eval --quiet arch_code)
-fi
-
-
-export REDISCLI_AUTH=passwd
-
-#compdef just
-source <(JUST_COMPLETE=zsh just)
-if [ "$funcstack[1]" = "_just" ]; then
-  _clap_dynamic_completer_just "$@"
-fi
-
-eval "$(direnv hook zsh)"
+eval "$(atuin init zsh)"
 
 source ~/code/configs/atuin/init.zsh
-export PATH=$HOME/bin:$PATH
+
+
+# 只在 macOS (Darwin) 下执行 jenv 初始化
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
