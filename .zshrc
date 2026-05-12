@@ -133,7 +133,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # keychain  保存密钥密码
 # 兼容处理：在 Mac 上如果不习惯用 keychain 可以注释掉，Arch 上保持 quiet 模式方便截图
 if command -v keychain >/dev/null 2>&1; then
-    eval $(keychain --eval --quiet id_rsa)
+    eval $(keychain --eval --quiet arch_code)
 fi
 
 
