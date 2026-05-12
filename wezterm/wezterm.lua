@@ -5,7 +5,8 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 -- or, changing the font size and color scheme.
-config.font_size = 16
+config.font_size = 18
+config.line_height = 1.3
 config.color_scheme = "Catppuccin Mocha"
 config.enable_tab_bar = false
 config.background = {
@@ -35,6 +36,12 @@ config.background = {
 config.leader = { key = "q", mods = "ALT", timeout_milliseconds = 1000 }
 
 config.keys = {
+	-- 1. 禁用默认的 Alt+Enter 全屏，让按键传给 Neovim
+	{
+		key = "Enter",
+		mods = "ALT",
+		action = act.DisableDefaultAssignment,
+	},
 	{ key = "1", mods = "ALT", action = act.ActivateTab(0) },
 	{ key = "2", mods = "ALT", action = act.ActivateTab(1) },
 	{ key = "3", mods = "ALT", action = act.ActivateTab(2) },
