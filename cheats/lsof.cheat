@@ -1,0 +1,5 @@
+% lsof, port 
+
+# 查看端口占用
+lsof -i :<port>
+
