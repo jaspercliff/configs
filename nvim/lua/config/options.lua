@@ -9,3 +9,5 @@
 
 -- 开启相对行号 (行号随着光标跳动)
 -- vim.opt.relativenumber = true
+
+vim.opt.updatetime = 1000 -- 将停顿时间改为 1 秒
