@@ -36,5 +36,11 @@ return {
       desc = "Java Mapper hover",
       ft = { "java" },
     },
+    --  1s 自动浮窗 当sql太长时，可以按该快捷键快速进去弹窗进行滚动查看
+    {
+      "<leader>jp",
+      "<Cmd>JavaPasteClass<CR>",
+      desc = "Java: 粘贴代码并建类",
+    },
   },
 }
