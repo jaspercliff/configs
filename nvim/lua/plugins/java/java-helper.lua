@@ -42,5 +42,10 @@ return {
       "<Cmd>JavaPasteClass<CR>",
       desc = "Java: 粘贴代码并建类",
     },
+    {
+      "<leader>js",
+      "<Cmd>JavaJvmSpec<CR>",
+      desc = "Go to JVM Spec",
+    },
   },
 }
