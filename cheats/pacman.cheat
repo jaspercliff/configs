@@ -1,0 +1,10 @@
+% pacman,  arch linux
+
+# 查看所有已安装的包
+pacman -Q
+
+# 查看显式安装（显式指定安装，而非作为依赖被动拉取）的包
+pacman -Qe
+
+# R 删除软件 n 不备份配置文件 s 删除独立依赖
+sudo pacman -Rns <name>
