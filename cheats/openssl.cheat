@@ -1,0 +1,3 @@
+% lsof, port 
+# 生成base64编码 32位
+openssl rand -base64 32
