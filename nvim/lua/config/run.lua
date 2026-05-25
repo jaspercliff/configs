@@ -1,14 +1,35 @@
 local M = {} -- module
 
 function M.run_java_jdk21()
-  -- 1. 自动保存当前文件，防止运行旧代码
+  -- 1. 自动保存
   vim.cmd("silent! write")
-  -- 2. 获取当前文件的绝对路径
+
   local file = vim.fn.expand("%:p")
-  -- 3. 构建命令 (JDK 11+ 支持直接 java 运行 .java 文件)
-  local cmd = string.format("java %s", file)
-  -- 4. 在浮动窗口执行
-  -- 参数说明: exec(命令, 终端ID, 窗口大小, 方向)
+  local jvm_args = ""
+
+  -- 2. 逐行读取文件内容
+  -- 使用 io.lines 性能很好，因为它不会一次性把大文件读入内存
+  for line in io.lines(file) do
+    -- 去掉行首空格
+    local trimmed = line:gsub("^%s*", "")
+
+    -- 匹配以 // 开头的行
+    if trimmed:find("^//") then
+      -- 提取 // 之后的内容作为参数
+      jvm_args = trimmed:match("^//%s*(.*)")
+      break -- 找到第一个符合条件的参数行就停止搜索
+    end
+
+    -- 性能/逻辑优化：如果已经遇到了 class、interface 或 enum，
+    -- 说明已经进入代码正文，还没找到注释就可以放弃了，防止扫完整个大文件
+    if trimmed:find("public%s+class") or trimmed:find("class%s+") then
+      break
+    end
+  end
+
+  -- 3. 构建并执行命令
+  local cmd = jvm_args ~= "" and string.format("java %s %s", jvm_args, file) or string.format("java %s", file)
+
   require("toggleterm").exec(cmd, 15, nil, nil, "float")
 end
 
