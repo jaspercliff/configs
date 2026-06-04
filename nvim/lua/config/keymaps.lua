@@ -8,6 +8,10 @@ end, { desc = "Java 21 Single File Run" })
 vim.keymap.set("n", "<leader>rl", function()
   require("config.run").run_lua()
 end, { desc = "run lua file" })
+
+vim.keymap.set("n", "<leader>rr", function()
+  require("config.run").run_rust()
+end, { desc = "run rust file" })
 -- =============================================dap
 vim.keymap.set("n", "<F5>", function()
   require("dap").continue()

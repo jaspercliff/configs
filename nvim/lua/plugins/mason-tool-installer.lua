@@ -7,6 +7,7 @@ return {
       "google-java-format",
       "java-debug-adapter", --java dap
       "java-test",
+      "rust-analyzer",
     },
   },
 }

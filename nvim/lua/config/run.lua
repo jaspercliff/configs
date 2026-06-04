@@ -74,4 +74,19 @@ function M.run_bun()
   require("toggleterm").exec("bun start", 15, nil, nil, "horizontal")
 end
 
+function M.run_rust()
+  -- 1. 自动保存当前文件
+  vim.cmd("silent! write")
+
+  local file = vim.fn.expand("%:p") -- 完整绝对路径
+  local output = vim.fn.expand("%:p:r") -- 不带后缀的文件名
+
+  -- 2. 构建命令：编译 -> 执行 -> 删除
+  -- 使用 [[ ]] 包装路径是为了防止路径中有空格导致命令失效
+  local cmd = string.format("rustc '%s' -o '%s' && '%s' && rm '%s'", file, output, output, output)
+
+  -- 3. 调用 ToggleTerm 在浮窗执行
+  require("toggleterm").exec(cmd, 15, nil, nil, "float")
+end
+
 return M
