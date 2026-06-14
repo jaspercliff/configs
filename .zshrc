@@ -110,3 +110,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 # mise 
 eval "$(mise activate zsh)"
+
+# OpenClaw Completion
+[ -f "/Users/jasper/.openclaw/completions/openclaw.zsh" ] && source "/Users/jasper/.openclaw/completions/openclaw.zsh"
+
+# Added by Antigravity IDE
+export PATH="/Users/jasper/.antigravity-ide/antigravity-ide/bin:$PATH"

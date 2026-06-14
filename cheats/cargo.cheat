@@ -1,0 +1,4 @@
+% cargo, rust utils
+
+# 通过 cargo install 安装过的所有二进制程序
+cargo install --list
