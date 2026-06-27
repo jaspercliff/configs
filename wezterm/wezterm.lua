@@ -8,7 +8,7 @@ local config = wezterm.config_builder()
 config.font_size = 16
 config.line_height = 1.2
 config.color_scheme = "Catppuccin Mocha"
-config.enable_tab_bar = false
+config.enable_tab_bar = true
 config.window_decorations = "RESIZE"
 config.background = {
 	{
