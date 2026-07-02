@@ -1,35 +1,57 @@
 local M = {} -- module
 
+-- 解析package 上面的参数为jvm 参数
 function M.run_java_jdk21()
-  -- 1. 自动保存
+  -- 1. 自动保存当前文件
   vim.cmd("silent! write")
 
-  local file = vim.fn.expand("%:p")
-  local jvm_args = ""
+  local file_path = vim.fn.expand("%:p") -- 完整绝对路径
+  local jvm_args_list = {}
 
-  -- 2. 逐行读取文件内容
-  -- 使用 io.lines 性能很好，因为它不会一次性把大文件读入内存
-  for line in io.lines(file) do
-    -- 去掉行首空格
-    local trimmed = line:gsub("^%s*", "")
+  -- 2. 逐行读取文件内容，解析 package 上方的 // 注释
+  for line in io.lines(file_path) do
+    -- 去掉行首和行尾的空格
+    local trimmed = line:gsub("^%s*", ""):gsub("%s*$", "")
+
+    -- 核心逻辑：如果碰到了 package、class、interface 或 enum，说明已经出了顶部区域，直接结束循环
+    if
+      trimmed:find("^package%s+")
+      or trimmed:find("public%s+class")
+      or trimmed:find("class%s+")
+      or trimmed:find("interface%s+")
+    then
+      break
+    end
 
     -- 匹配以 // 开头的行
     if trimmed:find("^//") then
-      -- 提取 // 之后的内容作为参数
-      jvm_args = trimmed:match("^//%s*(.*)")
-      break -- 找到第一个符合条件的参数行就停止搜索
-    end
-
-    -- 性能/逻辑优化：如果已经遇到了 class、interface 或 enum，
-    -- 说明已经进入代码正文，还没找到注释就可以放弃了，防止扫完整个大文件
-    if trimmed:find("public%s+class") or trimmed:find("class%s+") then
-      break
+      -- 提取 // 之后的内容
+      local arg = trimmed:match("^//%s*(.*)")
+      if arg and arg ~= "" then
+        table.insert(jvm_args_list, arg)
+      end
     end
   end
 
-  -- 3. 构建并执行命令
-  local cmd = jvm_args ~= "" and string.format("java %s %s", jvm_args, file) or string.format("java %s", file)
+  -- 3. 将所有找到的注释行，用空格拼接成一个完整的字符串
+  local jvm_args = table.concat(jvm_args_list, " ")
+  jvm_args = jvm_args:gsub("^%s*", ""):gsub("%s*$", "")
 
+  -- 4. 构建并执行命令
+  -- 针对带有空格的文件路径进行 shell 转义，确保稳健
+  local safe_file_path = vim.fn.shellescape(file_path)
+  local cmd
+
+  if jvm_args ~= "" then
+    cmd = string.format("java %s %s", jvm_args, safe_file_path)
+  else
+    cmd = string.format("java %s", safe_file_path)
+  end
+
+  -- 5. 调用 toggleterm 异步执行
+  -- 参数说明: exec(cmd, id, size, dir, direction, go_back, open_stdout)
+  -- 15: 固定一个 terminal id
+  -- "float": 浮动窗口
   require("toggleterm").exec(cmd, 15, nil, nil, "float")
 end
 
