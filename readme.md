@@ -23,7 +23,7 @@ ln -s ~/code/configs/wezterm ~/.config/wezterm
 
 ###  java 
 
-- leader+rj  运行java （jdk21） package上面的// 注释会解析为 jvm 参数 
+- Run Java (JDK 21) & parse // comments above package as JVM args
 
 ```java 
 // -Xms50m -Xmx50m -XX:+HeapDumpOnOutOfMemoryError
