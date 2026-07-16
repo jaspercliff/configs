@@ -13,8 +13,42 @@ vim.keymap.set("n", "<leader>rr", function()
   require("config.run").run_rust()
 end, { desc = "run rust file" })
 -- =============================================dap
+-- vim.keymap.set("n", "<F5>", function()
+--   require("dap").continue()
+-- end)
 vim.keymap.set("n", "<F5>", function()
-  require("dap").continue()
+  if vim.bo.filetype == "java" then
+    local dap = require("dap")
+
+    require("jdtls.dap").setup_dap_main_class_configs({
+      on_ready = function()
+        -- 获取当前文件名（即类名）
+        local current_class = vim.fn.expand("%:t:r")
+        local configs = dap.configurations.java or {}
+
+        -- 寻找匹配当前类名的配置索引
+        local target_index = nil
+        for i, config in ipairs(configs) do
+          if config.mainClass and config.mainClass:match("%." .. current_class .. "$") then
+            target_index = i
+            break
+          end
+        end
+
+        -- 如果找到了，把它移到列表的第一位 (index 1)
+        if target_index and target_index > 1 then
+          local target_config = table.remove(configs, target_index)
+          table.insert(configs, 1, target_config)
+        end
+
+        -- 唤起弹窗，此时第一项就是当前类，直接按回车即可
+        dap.continue()
+      end,
+    })
+  else
+    -- 非 Java 文件，正常走默认逻辑
+    require("dap").continue()
+  end
 end)
 vim.keymap.set("n", "<F6>", function()
   require("dap").terminate()

@@ -9,7 +9,7 @@ config.font_size = 14
 config.line_height = 1.2
 config.color_scheme = "Catppuccin Mocha"
 config.enable_tab_bar = true
-config.window_decorations = "RESIZE"
+-- config.window_decorations = "RESIZE"
 config.background = {
 	{
 		source = {
@@ -21,8 +21,6 @@ config.background = {
 		},
 	},
 }
-
--- config.window_decorations = "RESIZE"
 
 -- 2. 亮色模式下给文字加一点“重量”
 -- 亮色背景下文字容易显得单薄，用 Medium 字重更高级
