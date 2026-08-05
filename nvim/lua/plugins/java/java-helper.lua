@@ -1,6 +1,6 @@
 return {
-  "jaspercliff/java-helper.nvim",
-  --dir = vim.fn.expand("~/code/lua/java-helper.nvim"),
+  -- "jaspercliff/java-helper.nvim",
+  dir = vim.fn.expand("~/code/lua/java-helper.nvim"),
   ft = "java",
   cmd = {
     "JavaCreateClass",
@@ -47,5 +47,12 @@ return {
       "<Cmd>JavaJvmSpec<CR>",
       desc = "Go to JVM Spec",
     },
+    {
+      "<leader>jd",
+      "<Cmd>JavaGenJavadoc<CR>",
+      desc = "generate java doc",
+    },
+
+    vim.keymap.set("n", "<leader>jp", "<cmd>JavaPropsYamlConvert<CR>", { desc = "YAML ↔ Props 互转" }),
   },
 }
