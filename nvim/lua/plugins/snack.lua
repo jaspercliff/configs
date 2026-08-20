@@ -26,6 +26,7 @@ return {
       -- 可选：java-helper 的配置
       author = "jasper",
       since_format = "%Y-%m-%d %H:%M:%S",
+      sub_package = "com.jasper",
     }, {
       key = "J", -- explorer 列表里按 N 创建
       init_key = "M",
