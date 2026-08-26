@@ -35,3 +35,13 @@ package com.jasper.memory;
 java -Xms50m -Xmx50m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/Users/jasper/workspace/dump/heapdump.hprof '/Users/jasper/code/java/person/learnJava/basic/jvm/src/main/java/com/jasper/memory/MemoryLe
 ak.java'
 ```
+
+## wol 
+
+
+```shell 
+sudo systemctl daemon-reload
+sudo systemctl enable wol.service
+sudo systemctl start wol.service
+sudo ethtool eno1 | grep -i wake
+```
