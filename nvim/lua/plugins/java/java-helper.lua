@@ -1,6 +1,6 @@
 return {
-  -- "jaspercliff/java-helper.nvim",
-  dir = vim.fn.expand("~/code/lua/java-helper.nvim"),
+   "jaspercliff/java-helper.nvim",
+  --dir = vim.fn.expand("~/code/lua/java-helper.nvim"),
   ft = "java",
   cmd = {
     "JavaCreateClass",
