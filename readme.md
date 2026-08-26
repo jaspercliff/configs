@@ -38,6 +38,7 @@ ak.java'
 
 ## wol 
 
+sudo ln -s ~/code/configs/wol.service /etc/systemd/system/
 
 ```shell 
 sudo systemctl daemon-reload
