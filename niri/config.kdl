@@ -645,6 +645,6 @@ window-rule {
     // 额外建议：开启圆角，让美化更统一
     geometry-corner-radius 12
 }
-spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "noctalia"
 // swww壁纸
 spawn-at-startup "swww-daemon"
