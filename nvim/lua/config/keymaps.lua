@@ -12,22 +12,24 @@ end, { desc = "run lua file" })
 vim.keymap.set("n", "<leader>rr", function()
   require("config.run").run_rust()
 end, { desc = "run rust file" })
--- =============================================dap
--- vim.keymap.set("n", "<F5>", function()
---   require("dap").continue()
--- end)
-vim.keymap.set("n", "<F5>", function()
-  if vim.bo.filetype == "java" then
-    local dap = require("dap")
+-- =============================================
+-- DAP
+-- =============================================
 
+local dap = require("dap")
+
+-- Continue / 启动 Debug
+vim.keymap.set("n", "<leader>dc", function()
+  if vim.bo.filetype == "java" then
     require("jdtls.dap").setup_dap_main_class_configs({
       on_ready = function()
-        -- 获取当前文件名（即类名）
+        -- 获取当前文件名（类名）
         local current_class = vim.fn.expand("%:t:r")
         local configs = dap.configurations.java or {}
 
-        -- 寻找匹配当前类名的配置索引
+        -- 查找当前类对应的 mainClass
         local target_index = nil
+
         for i, config in ipairs(configs) do
           if config.mainClass and config.mainClass:match("%." .. current_class .. "$") then
             target_index = i
@@ -35,41 +37,51 @@ vim.keymap.set("n", "<F5>", function()
           end
         end
 
-        -- 如果找到了，把它移到列表的第一位 (index 1)
+        -- 如果找到当前类，把它移动到第一位
         if target_index and target_index > 1 then
           local target_config = table.remove(configs, target_index)
           table.insert(configs, 1, target_config)
         end
 
-        -- 唤起弹窗，此时第一项就是当前类，直接按回车即可
+        -- 启动 Debug
         dap.continue()
       end,
     })
   else
-    -- 非 Java 文件，正常走默认逻辑
-    require("dap").continue()
+    -- 非 Java 文件
+    dap.continue()
   end
-end)
-vim.keymap.set("n", "<F6>", function()
-  require("dap").terminate()
-end)
-vim.keymap.set("n", "<leader>5", "<cmd>DapViewToggle<CR>")
+end, { desc = "DAP Continue" })
 
-vim.keymap.set("n", "<F9>", function()
-  require("dap").toggle_breakpoint()
-end)
+-- Terminate
+vim.keymap.set("n", "<leader>dt", function()
+  dap.terminate()
+end, { desc = "DAP Terminate" })
 
-vim.keymap.set("n", "<F10>", function()
-  require("dap").step_over()
-end)
+-- DAP View
+vim.keymap.set("n", "<leader>dv", "<cmd>DapViewToggle<CR>", {
+  desc = "DAP View Toggle",
+})
 
-vim.keymap.set("n", "<F11>", function()
-  require("dap").step_into()
-end)
+-- Toggle Breakpoint
+vim.keymap.set("n", "<leader>db", function()
+  dap.toggle_breakpoint()
+end, { desc = "DAP Toggle Breakpoint" })
 
-vim.keymap.set("n", "<F12>", function()
-  require("dap").step_out()
-end)
+-- Step Over
+vim.keymap.set("n", "<leader>do", function()
+  dap.step_over()
+end, { desc = "DAP Step Over" })
+
+-- Step Into
+vim.keymap.set("n", "<leader>di", function()
+  dap.step_into()
+end, { desc = "DAP Step Into" })
+
+-- Step Out
+vim.keymap.set("n", "<leader>dx", function()
+  dap.step_out()
+end, { desc = "DAP Step Out" })
 
 -- =======================================jdtls
 vim.keymap.set("n", "<leader>jb", "<cmd>JdtBytecode<CR>", { desc = "Java: Show bytecode simple" })
