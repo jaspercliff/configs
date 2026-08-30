@@ -3,11 +3,10 @@ return {
     "igorlfs/nvim-dap-view",
     lazy = false,
     version = "1.*",
+
     opts = {
       winbar = {
         base_sections = {
-          -- Labels can be set dynamically with functions
-          -- Each function receives the window's width and the current section as arguments
           breakpoints = { label = "Breakpoints", keymap = "b" },
           scopes = { label = "Scopes", keymap = "s" },
           exceptions = { label = "Exceptions", keymap = "e" },
@@ -17,6 +16,7 @@ return {
           sessions = { label = "Sessions", keymap = "k" },
           console = { label = "Console", keymap = "c" },
         },
+
         sections = {
           "watches",
           "scopes",
@@ -26,9 +26,10 @@ return {
           "repl",
           "console",
         },
-        -- 设置默认选中的板块
+
         default_section = "scopes",
       },
+
       icons = {
         collapsed = "󰅂 ",
         disabled = "",
@@ -47,5 +48,25 @@ return {
         terminate = "",
       },
     },
+
+    config = function(_, opts)
+      require("dap-view").setup(opts)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "dap-view-term",
+        callback = function(event)
+          vim.keymap.set("n", "<leader>dc", function()
+            vim.bo[event.buf].modifiable = true
+
+            vim.api.nvim_buf_set_lines(event.buf, 0, -1, false, {})
+
+            vim.bo[event.buf].modifiable = false
+          end, {
+            buffer = event.buf,
+            desc = "Clear DAP Console",
+          })
+        end,
+      })
+    end,
   },
 }
