@@ -3,8 +3,8 @@ require("config.lazy")
 
 require("config.snippets")
 
-vim.o.guifont = "JetBrains Mono:h14"
-vim.opt.linespace = 5
+vim.o.guifont = "JetBrains Mono:h12"
+vim.opt.linespace = 3
 
 vim.o.exrc = true
 vim.o.secure = true

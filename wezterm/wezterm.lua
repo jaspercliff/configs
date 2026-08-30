@@ -5,7 +5,7 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 -- or, changing the font size and color scheme.
-config.font_size = 14
+config.font_size = 12
 config.line_height = 1.2
 config.color_scheme = "Catppuccin Mocha"
 config.enable_tab_bar = true
