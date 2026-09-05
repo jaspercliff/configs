@@ -11,3 +11,9 @@ git diff <分支A> <分支B> -- <文件路径>
 
 # 从tag新建分支
 git switch -c <newBranch> <tag>
+
+# 查看远程仓库
+git remote -v
+
+# 添加一个推送分支 一下推送俩个分支 
+git remote set-url --add --push origin <address>
