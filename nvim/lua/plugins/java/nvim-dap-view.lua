@@ -18,16 +18,16 @@ return {
         },
 
         sections = {
+          "console",
           "watches",
           "scopes",
           "exceptions",
           "breakpoints",
           "threads",
           "repl",
-          "console",
         },
 
-        default_section = "scopes",
+        default_section = "console",
       },
 
       icons = {

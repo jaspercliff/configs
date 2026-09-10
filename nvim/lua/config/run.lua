@@ -111,4 +111,16 @@ function M.run_rust()
   require("toggleterm").exec(cmd, 15, nil, nil, "float")
 end
 
+function M.run_selected()
+  vim.cmd("silent! write")
+
+  local start_row = vim.fn.line("'<")
+  local end_row = vim.fn.line("'>")
+
+  local lines = vim.fn.getline(start_row, end_row)
+  local command = table.concat(lines, "\n")
+
+  require("toggleterm").exec(command, 15, nil, nil, "float")
+end
+
 return M

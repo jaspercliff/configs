@@ -12,6 +12,10 @@ end, { desc = "run lua file" })
 vim.keymap.set("n", "<leader>rr", function()
   require("config.run").run_rust()
 end, { desc = "run rust file" })
+
+vim.keymap.set("v", "<leader>r", function()
+  require("config.run").run_selected()
+end, { desc = "Run selected command in ToggleTerm" })
 -- =============================================
 -- DAP
 -- =============================================
@@ -59,7 +63,7 @@ vim.keymap.set("n", "<leader>dt", function()
 end, { desc = "DAP Terminate" })
 
 -- DAP View
-vim.keymap.set("n", "<leader>dv", "<cmd>DapViewToggle<CR>", {
+vim.keymap.set("n", "<leader>5", "<cmd>DapViewToggle<CR>", {
   desc = "DAP View Toggle",
 })
 
