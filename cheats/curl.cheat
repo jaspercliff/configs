@@ -1,0 +1,7 @@
+% curl ,curl
+
+# 下载文件 -O 保留原始文件名 -f：HTTP 请求失败时返回错误（如 404、500)。-L：跟随重定向
+curl -fvLO <url>
+
+# 下载文件 -o 自定义文件名 
+curl -o <name> <url>

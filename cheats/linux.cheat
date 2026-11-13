@@ -1,0 +1,4 @@
+% linux,linux
+
+# 将目录所有者修改为当前登录用户 -R recursive
+sudo chown -R "$(whoami)":"$(id -gn)" <menu>
