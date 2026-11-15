@@ -9,5 +9,14 @@ docker compose up -d
 # docker-compose 停止
 docker compose down 
 
+# 会删除volume
+docker compose down -v
+
 # compose 查看日志
 docker compose logs
+
+# 查看所有卷
+docker volume ls
+
+# 查看卷信息
+docker volume inspect <volumeName>
