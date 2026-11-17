@@ -123,4 +123,24 @@ function M.run_selected()
   require("toggleterm").exec(command, 15, nil, nil, "float")
 end
 
+function M.run_js()
+  vim.cmd("silent! write")
+
+  local file = vim.fn.expand("%:p")
+  local ext = vim.fn.expand("%:e")
+
+  local cmd
+
+  if ext == "js" or ext == "mjs" or ext == "cjs" then
+    cmd = string.format("node '%s'", file)
+  elseif ext == "ts" or ext == "mts" or ext == "cts" then
+    cmd = string.format("npx tsx '%s'", file)
+  else
+    vim.notify("Unsupported file type: " .. ext, vim.log.levels.ERROR)
+    return
+  end
+
+  require("toggleterm").exec(cmd, 15, nil, nil, "float")
+end
+
 return M

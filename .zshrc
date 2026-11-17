@@ -134,3 +134,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# PostgreSQL 默认连接配置
+export PGHOST=localhost
+export PGPORT=5432
+export PGUSER=jasper
+export PGDATABASE=java_lab
