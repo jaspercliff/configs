@@ -1,3 +1,7 @@
+# Homebrew environment
+if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 # 1. completion（必须先）
 autoload -Uz compinit
 compinit
@@ -6,8 +10,6 @@ eval "$(zoxide init zsh)"
 
 export EDITOR=nvim
 export VISUAL=nvim
-########################################################## starship
-eval "$(starship init zsh)"
 
 
 ########################################################## yazi config
@@ -140,3 +142,7 @@ export PGHOST=localhost
 export PGPORT=5432
 export PGUSER=jasper
 export PGDATABASE=java_lab
+
+
+########################################################## starship
+eval "$(starship init zsh)"
