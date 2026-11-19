@@ -107,3 +107,7 @@ vim.keymap.set("n", "<leader>rb", function()
 end, { desc = "run docusaurus" })
 
 vim.keymap.set("i", "jk", "<Esc>")
+
+vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", {
+  desc = "Find TODO",
+})
