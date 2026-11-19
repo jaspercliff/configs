@@ -8,6 +8,16 @@ return {
       -- 每次打开 Java 文件都会刷一屏。改由 <leader>dc 按需扫描。
       opts.dap_main = false
 
+      -- =====================================================
+      -- JVM HotSwap（方案 B）：debug session 中改方法体后自动 redefine
+      -- java-debug-adapter 在 BUILD_COMPLETE 时发 redefineClasses 请求，
+      -- 这里显式声明开关（LazyVim 默认也是 auto），便于一眼看到。
+      -- 限制：只能改方法体；加字段/方法/类需方案 C（JRebel/HotswapAgent）。
+      -- 手动兜底命令：:JdtUpdateHotcode（快捷键 <leader>dH）
+      -- =====================================================
+      opts.dap = opts.dap or {}
+      opts.dap.hotcodereplace = "auto"
+
       opts.jdtls = opts.jdtls or {}
 
       opts.jdtls.settings = opts.jdtls.settings or {}

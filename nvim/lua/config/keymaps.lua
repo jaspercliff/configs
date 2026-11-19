@@ -105,6 +105,35 @@ vim.keymap.set("n", "<leader>dt", function()
   dap.terminate()
 end, { desc = "DAP Terminate" })
 
+-- =============================================
+-- JVM HotSwap（方案 B）
+-- 流程：<leader>dr 启动 debug(JDWP 5005, suspend) → <leader>da attach
+--       → 改方法体 + :w 保存自动 redefine；没自动生效就 <leader>dH 手动触发
+-- 限制：标准 JVM 只能改方法体；加字段/方法/类要重 attach 或上 JRebel/HotswapAgent
+-- =============================================
+
+-- 选 "Debug (Attach) - Remote" 配置 attach 到 5005
+vim.keymap.set("n", "<leader>da", function()
+  local configs = dap.configurations.java or {}
+  for _, cfg in ipairs(configs) do
+    if cfg.request == "attach" then
+      dap.run(cfg)
+      return
+    end
+  end
+  vim.notify("未找到 Java attach 配置（5005）", vim.log.levels.WARN)
+end, { desc = "DAP: Attach Java 5005 (HotSwap)" })
+
+-- 手动触发热替换（auto 没生效时的兜底，等价 :JdtUpdateHotcode）
+vim.keymap.set("n", "<leader>dH", function()
+  vim.cmd("JdtUpdateHotcode")
+end, { desc = "DAP: 手动触发 HotSwap redefineClasses" })
+
+-- 以 debug 模式启动 postgres-demo（bootRun --debug-jvm，5005 挂起等 attach）
+vim.keymap.set("n", "<leader>dr", function()
+  require("config.run").run_java_bootrun_debug()
+end, { desc = "Java: bootRun debug (JDWP 5005)" })
+
 -- DAP View
 vim.keymap.set("n", "<leader>5", "<cmd>DapViewToggle<CR>", {
   desc = "DAP View Toggle",

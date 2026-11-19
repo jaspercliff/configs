@@ -55,6 +55,17 @@ function M.run_java_jdk21()
   require("toggleterm").exec(cmd, 15, nil, nil, "float")
 end
 
+-- 方案 B（JVM HotSwap）第一步：以 JDWP debug 模式启动 Spring Boot 应用。
+-- bootRun --debug-jvm 会在 5005 端口以 suspend=y 等待 debugger attach。
+-- 启动后用 <leader>da attach，之后改方法体 + :w 保存即可热替换，无需重启。
+-- 跑其它模块就把下面的 task 换成对应的 :模块:bootRun。
+function M.run_java_bootrun_debug()
+  vim.cmd("silent! write")
+  local task = ":dataAccess:postgres-demo:bootRun"
+  local cmd = string.format("./gradlew %s --debug-jvm", task)
+  require("toggleterm").exec(cmd, 15, nil, nil, "float")
+end
+
 function M.run_lua()
   -- 1. 自动保存当前文件，防止运行旧代码
   vim.cmd("silent! write")
