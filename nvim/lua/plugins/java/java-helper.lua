@@ -8,6 +8,7 @@ return {
     "JavaGoToTest",
     "JavaGoToMapper",
     "JavaMapperHover",
+    "JavaSqlLogParse",
   },
   opts = {
     create_class_command = "JavaCreateClass",
@@ -51,6 +52,13 @@ return {
       "<leader>jd",
       "<Cmd>JavaGenJavadoc<CR>",
       desc = "generate java doc",
+    },
+    -- 可视模式选中日志行后执行，自动带入选区范围
+    {
+      "<leader>l",
+      ":<C-u>'<,'>JavaSqlLogParse<CR>",
+      mode = "v",
+      desc = "合并选区 SQL 日志（Preparing/Parameters）",
     },
 
     vim.keymap.set("n", "<leader>jp", "<cmd>JavaPropsYamlConvert<CR>", { desc = "YAML ↔ Props 互转" }),
