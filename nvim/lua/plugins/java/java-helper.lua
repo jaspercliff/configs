@@ -61,6 +61,20 @@ return {
       desc = "合并选区 SQL 日志（Preparing/Parameters）",
     },
 
+    -- 刷新 jdtls 项目配置 / classpath（改了 build.gradle.kts 加依赖后用）
+    {
+      "<leader>ju",
+      "<Cmd>JdtUpdateConfig<CR>",
+      desc = "Java: 刷新当前项目配置（选择模块）",
+      ft = "java",
+    },
+    {
+      "<leader>jU",
+      "<Cmd>JdtUpdateConfig!<CR>",
+      desc = "Java: 刷新全部项目配置",
+      ft = "java",
+    },
+
     vim.keymap.set("n", "<leader>jp", "<cmd>JavaPropsYamlConvert<CR>", { desc = "YAML ↔ Props 互转" }),
 
     vim.keymap.set("n", "<leader>jg", "<cmd>JavaMavenToVersionCatalog<CR>", { desc = "Maven 转 Version Catalog" }),

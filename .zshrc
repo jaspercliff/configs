@@ -105,11 +105,8 @@ eval "$(atuin init zsh)"
 source ~/code/configs/atuin/init.zsh
 
 
-# 只在 macOS (Darwin) 下执行 jenv 初始化
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-fi
+# jenv 已移除（2026-11-19）：初始化脚本在 fork 资源紧张时会递归 fork 撑爆进程表
+# Java 版本改用 mise 管理（见下方 mise activate）
 # mise 
 eval "$(mise activate zsh)"
 
