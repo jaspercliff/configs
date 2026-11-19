@@ -28,8 +28,8 @@ brew install --cask <软件名>
 # 仅删除该软件，保留依赖
 brew uninstall <name>
 
-# 强制卸载（包括所有版本） 但是依然不会删除依赖 
-brew uninstall --force <name>
+# zap 关联数据 
+brew uninstall --zap <name>
 
 # 一键清理所有不再需要的“孤儿”依赖
 brew autoremove

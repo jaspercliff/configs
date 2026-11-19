@@ -20,6 +20,45 @@ end, { desc = "run rust file" })
 vim.keymap.set("v", "<leader>r", function()
   require("config.run").run_selected()
 end, { desc = "Run selected command in ToggleTerm" })
+
+-- =============================================
+-- Java 语义重构（jdtls，会同步改引用）
+-- Shift+F6 重命名类/包 + 全部引用；F6 移动类到包 + 改 package + 全部引用
+-- =============================================
+
+local JAVA_FILETYPE = "java"
+local MOVE_ACTION_PREFIX = "Move"
+local RENAME_KEY = "<S-F6>"
+local RENAME_LEADER_KEY = "<leader>cR"
+local MOVE_KEY = "<F6>"
+local MOVE_LEADER_KEY = "<leader>cM"
+local RENAME_DESC = "Java: Rename class/package (update references)"
+local MOVE_DESC = "Java: Move class to package (update package + references)"
+local NOT_JAVA_MESSAGE = "当前缓冲区不是 Java 文件，无法执行 Java 重构"
+local WARNING_LEVEL = vim.log.levels.WARN
+
+local function java_rename()
+  vim.lsp.buf.rename()
+end
+
+local function java_move()
+  if vim.bo.filetype ~= JAVA_FILETYPE then
+    vim.notify(NOT_JAVA_MESSAGE, WARNING_LEVEL)
+    return
+  end
+  vim.lsp.buf.code_action({
+    apply = true,
+    filter = function(action)
+      return vim.startswith(action.title or "", MOVE_ACTION_PREFIX)
+    end,
+  })
+end
+
+vim.keymap.set("n", RENAME_KEY, java_rename, { desc = RENAME_DESC })
+vim.keymap.set("n", RENAME_LEADER_KEY, java_rename, { desc = RENAME_DESC })
+vim.keymap.set("n", MOVE_KEY, java_move, { desc = MOVE_DESC })
+vim.keymap.set("n", MOVE_LEADER_KEY, java_move, { desc = MOVE_DESC })
+
 -- =============================================
 -- DAP
 -- =============================================

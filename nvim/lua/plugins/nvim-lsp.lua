@@ -48,6 +48,17 @@ return {
             },
           },
         },
+        -- logback 等配置的语法无法用 XSD 描述（logback 官方说明），
+        -- Lemminx 对无 grammar 的 XML 默认报 hint，这里直接忽略该诊断。
+        lemminx = {
+          settings = {
+            xml = {
+              validation = {
+                noGrammar = "ignore",
+              },
+            },
+          },
+        },
       },
     },
     keys = {
